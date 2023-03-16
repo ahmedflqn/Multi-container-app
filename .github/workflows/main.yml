@@ -10,18 +10,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-      - run: docker build -t ahmedflqn/react-test -f ./client/Dockerfile.dev ./client
-      - run: docker run -e CI=true ahmedflqn/react-test npm test
+      - run: docker build -t flqn/react-test -f ./client/Dockerfile.dev ./client
+      - run: docker run -e CI=true flqn/react-test npm test
  
-      - run: docker build -t ahmedflqn/multi-client-10-14 ./client
-      - run: docker build -t ahmedflqn/multi-nginx-10-14 ./nginx
-      - run: docker build -t ahmedflqn/multi-server-10-14 ./server
-      - run: docker build -t ahmedflqn/multi-worker-10-14 ./worker
+      - run: docker build -t flqn/multi-client-10-14 ./client
+      - run: docker build -t flqn/multi-nginx-10-14 ./nginx
+      - run: docker build -t flqn/multi-server-10-14 ./server
+      - run: docker build -t flqn/multi-worker-10-14 ./worker
  
-      - run: docker push ahmedflqn/multi-client-10-14
-      - run: docker push ahmedflqn/multi-nginx-10-14
-      - run: docker push ahmedflqn/multi-server-10-14
-      - run: docker push ahmedflqn/multi-worker-10-14
+      - run: docker push flqn/multi-client-10-14
+      - run: docker push flqn/multi-nginx-10-14
+      - run: docker push flqn/multi-server-10-14
+      - run: docker push flqn/multi-worker-10-14
  
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*'
